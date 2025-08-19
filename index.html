@@ -1,31 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GalaxyClient download</title>
+  <title>GalaxyClient</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="starfield"></canvas>
   <div class="overlay"></div>
-  <header>
+
+  <header class="fade-in-down">
     <h1 class="glow">GalaxyClient</h1>
   </header>
-  <main>
+
+  <main class="fade-in-up">
     <h2 class="download-title">Download</h2>
     <div class="cards">
       <div class="card">
-        <img src="icons/windows.png" alt="Windows" class="icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="icon">
         <h3>Download for Windows</h3>
         <button onclick="downloadFile('exe')">Download .exe</button>
       </div>
-
       <div class="card">
         <div class="multi-icons">
-          <img src="icons/linux.png" alt="Linux" class="icon">
-          <img src="icons/macos.png" alt="MacOS" class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="MacOS" class="icon">
         </div>
         <h3>Download for Any OS</h3>
         <button onclick="downloadFile('jar')">Download .jar</button>
