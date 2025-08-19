@@ -4,7 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let stars = [];
-for (let i = 0; i < 400; i++) { 
+for (let i = 0; i < 400; i++) {
   stars.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
@@ -47,14 +47,7 @@ async function downloadFile(type) {
   try {
     const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxyClientInstaller/releases/latest");
     const release = await response.json();
-
-    let asset;
-    if (type === "exe") {
-      asset = release.assets.find(a => a.name.endsWith(".exe"));
-    } else {
-      asset = release.assets.find(a => a.name.endsWith(".jar"));
-    }
-
+    let asset = type === "exe" ? release.assets.find(a => a.name.endsWith(".exe")) : release.assets.find(a => a.name.endsWith(".jar"));
     if (asset) {
       const link = document.createElement("a");
       link.href = asset.browser_download_url;
@@ -63,7 +56,7 @@ async function downloadFile(type) {
       link.click();
       document.body.removeChild(link);
     } else {
-      alert("Không tìm thấy file download cho loại: " + type);
+      alert("Không tìm thấy file download!");
     }
   } catch (err) {
     console.error("Download error:", err);
