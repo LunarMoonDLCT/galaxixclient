@@ -16,7 +16,7 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 80, 0.2);
+  background: rgba(0, 50, 80, 0.18);
   backdrop-filter: blur(2px);
   z-index: -1;
 }
@@ -59,22 +59,40 @@ header {
 .delay-2 { animation-delay: 0.7s; }
 .delay-3 { animation-delay: 1.1s; }
 .delay-4 { animation-delay: 1.5s; }
+
+.card-wrapper {
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.card-wrapper:hover {
+  transform: scale(1.12);
+}
+.card-wrapper:not(:hover) {
+  animation: shrinkBounce 0.35s ease-out;
+}
+@keyframes shrinkBounce {
+  0%   { transform: scale(1.12); }
+  40%  { transform: scale(0.95); }
+  70%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
 .card {
-  width: 360px;
+  width: 380px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 18px;
   padding: 2.5rem;
   text-align: center;
   backdrop-filter: blur(4px);
-  transform: scale(1);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
+  transition: box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
 }
-.card:hover {
-  transform: scale(1.12);
+.card-wrapper:hover .card {
   box-shadow: 0 0 35px #00f6ff;
   background: rgba(255, 255, 255, 0.1);
   color: #e0faff;
 }
+
 .icon {
   width: 50px;
   margin: 0.5rem;
