@@ -55,27 +55,38 @@ header {
 }
 
 .card {
-  width: 320px;
+  width: 300px;
   background: rgba(255, 255, 255, 0.07);
   border-radius: 22px;
   padding: 2.5rem;
   text-align: center;
   backdrop-filter: blur(7px);
   box-shadow: 0 0 12px #00f6ff55;
+  transform: scale(1); /* bình thường */
   transition: transform 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
-  transform: scale(1);
 }
+
 .card:hover {
-  transform: scale(1.15);
+  transform: scale(1.2); /* hover thì phóng to rõ */
   box-shadow: 0 0 40px #00f6ff;
 }
+
+.card h3 {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
 .card:hover h3 {
   color: #aefeff;
   text-shadow: 0 0 15px #00f6ff;
 }
+
+.card button {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .card:hover button {
-  transform: scale(1.12);
-  box-shadow: 0 0 25px #00f6ff;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #00f6ff;
 }
 
 button {
@@ -86,12 +97,11 @@ button {
   background: rgba(255,255,255,0.15);
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 8px #00f6ff55;
   transform: scale(1);
+  box-shadow: 0 0 8px #00f6ff55;
 }
 button:hover {
-  transform: scale(1.2);
+  transform: scale(1.25); /* khi hover nút riêng thì to hơn nữa */
   box-shadow: 0 0 30px #00f6ff;
 }
 button:active {
