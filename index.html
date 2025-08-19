@@ -10,26 +10,30 @@
   <canvas id="starfield"></canvas>
   <div class="overlay"></div>
 
-  <header class="fade-in delay-1">
+  <header class="fade-wrapper delay-1">
     <h1 class="glow">GalaxyClient</h1>
   </header>
 
-  <h2 class="download-title fade-in delay-2">Download</h2>
+  <h2 class="download-title fade-wrapper delay-2">Download</h2>
 
   <div class="cards">
-    <div class="card fade-in delay-3">
-      <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">
-      <h3>Download for Windows</h3>
-      <button onclick="downloadFile('exe')">Download .exe</button>
+    <div class="fade-wrapper delay-3">
+      <div class="card">
+        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">
+        <h3>Download for Windows</h3>
+        <button onclick="downloadFile('exe')">Download .exe</button>
+      </div>
     </div>
 
-    <div class="card fade-in delay-4">
-      <div class="multi-icons">
-        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
-        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="macOS">
+    <div class="fade-wrapper delay-4">
+      <div class="card">
+        <div class="multi-icons">
+          <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+          <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="macOS">
+        </div>
+        <h3>Download for Any OS</h3>
+        <button onclick="downloadFile('jar')">Download .jar</button>
       </div>
-      <h3>Download for Any OS</h3>
-      <button onclick="downloadFile('jar')">Download .jar</button>
     </div>
   </div>
 
