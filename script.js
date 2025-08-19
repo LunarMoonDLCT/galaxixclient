@@ -4,12 +4,12 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let stars = [];
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 400; i++) { 
   stars.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    radius: Math.random() * 1.5,
-    dy: Math.random() * 0.3 + 0.05
+    radius: Math.random() * 1.8,
+    dy: Math.random() * 0.5 + 0.1
   });
 }
 
@@ -38,8 +38,8 @@ function animate() {
 animate();
 
 document.addEventListener("mousemove", e => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  const x = (e.clientX / window.innerWidth - 0.5) * 25;
+  const y = (e.clientY / window.innerHeight - 0.5) * 25;
   canvas.style.transform = `translate(${x}px, ${y}px)`;
 });
 
@@ -47,6 +47,7 @@ async function downloadFile(type) {
   try {
     const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxyClientInstaller/releases/latest");
     const release = await response.json();
+
     let asset;
     if (type === "exe") {
       asset = release.assets.find(a => a.name.endsWith(".exe"));
