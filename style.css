@@ -1,94 +1,82 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, sans-serif;
-  color: #fff;
-  overflow: hidden;
-  height: 100vh;
   background: black;
+  color: white;
+  overflow: hidden;
 }
-
 #starfield {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: -2;
 }
-
 .overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 80, 0.15);
-  backdrop-filter: blur(1.5px);
+  background: rgba(0, 50, 100, 0.25);
   z-index: -1;
 }
 
 header {
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 0;
 }
-.glow {
-  font-size: 3.5rem;
-  animation: glowAnim 2s infinite alternate;
-}
-@keyframes glowAnim {
-  from { text-shadow: 0 0 8px #0ff, 0 0 20px #0ff; }
-  to { text-shadow: 0 0 25px #0ff, 0 0 45px #0ff; }
-}
-
-.fade-seq {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInSeq 1s ease forwards;
-  animation-delay: var(--delay, 0s);
-}
-@keyframes fadeInSeq {
-  to { opacity: 1; transform: translateY(0); }
+h1.glow {
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff;
+  animation: flicker 2s infinite;
 }
 
 .download-title {
   text-align: center;
-  margin: 1rem 0;
-  font-size: 2.5rem;
-  text-shadow: 0 0 10px #0ff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #aefeff;
+  text-shadow: 0 0 10px #00f6ff;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding: 2rem;
 }
 
 .card {
-  width: 300px;
-  background: rgba(255, 255, 255, 0.07);
+  width: 320px;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 22px;
-  padding: 2.5rem;
+  padding: 2rem;
   text-align: center;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(8px);
   box-shadow: 0 0 12px #00f6ff55;
-  transform: scale(1); /* bình thường */
-  transition: transform 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform: scale(1);
 }
-
 .card:hover {
-  transform: scale(1.2); /* hover thì phóng to rõ */
-  box-shadow: 0 0 40px #00f6ff;
+  transform: scale(1.15);
+  box-shadow: 0 0 35px #00f6ff;
 }
-
 .card h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .card:hover h3 {
   color: #aefeff;
-  text-shadow: 0 0 15px #00f6ff;
+  text-shadow: 0 0 12px #00f6ff;
 }
 
-.card button {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover button {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #00f6ff;
-}
-
+/* Buttons */
 button {
   margin-top: 1rem;
   padding: 1rem 2rem;
@@ -98,13 +86,42 @@ button {
   color: white;
   cursor: pointer;
   transform: scale(1);
-  box-shadow: 0 0 8px #00f6ff55;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 10px #00f6ff55;
 }
 button:hover {
-  transform: scale(1.25); /* khi hover nút riêng thì to hơn nữa */
-  box-shadow: 0 0 30px #00f6ff;
+  transform: scale(1.25);
+  box-shadow: 0 0 25px #00f6ff;
 }
 button:active {
   transform: scale(0.9);
-  box-shadow: 0 0 35px #0ff;
+  box-shadow: 0 0 30px #0ff;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+}
+.multi-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.fade-seq {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSeq 1s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes fadeInSeq {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
