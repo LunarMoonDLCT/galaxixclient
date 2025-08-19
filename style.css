@@ -8,6 +8,7 @@ body {
   background: black;
 }
 
+/* Background */
 #starfield {
   position: fixed;
   top: 0; left: 0;
@@ -19,73 +20,100 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 80, 0.25);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 50, 80, 0.15); /* trong suốt hơn */
+  backdrop-filter: blur(1.5px);
   z-index: -1;
 }
 
+/* Header */
 header {
   text-align: center;
   padding: 2rem;
 }
 .glow {
-  font-size: 3rem;
+  font-size: 3.5rem;
   animation: glowAnim 2s infinite alternate;
 }
 @keyframes glowAnim {
-  from { text-shadow: 0 0 5px #0ff, 0 0 15px #0ff; }
-  to { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+  from { text-shadow: 0 0 8px #0ff, 0 0 20px #0ff; }
+  to { text-shadow: 0 0 25px #0ff, 0 0 45px #0ff; }
+}
+
+/* Fade effects */
+.fade-in-up {
+  animation: fadeUp 1.5s ease forwards;
+}
+.fade-in-down {
+  animation: fadeDown 1.5s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Title */
 .download-title {
   text-align: center;
   margin: 1rem 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-shadow: 0 0 10px #0ff;
 }
 
+/* Cards */
 .cards {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   padding: 2rem;
 }
 .card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  padding: 2rem;
+  width: 280px; /* khung to hơn */
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 2.5rem;
   text-align: center;
-  backdrop-filter: blur(5px);
-  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px #00f6ff; /* sáng nhẹ mặc định */
+  transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #00f6ff;
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00f6ff;
 }
+.card:hover h3 {
+  color: #aefeff;
+  text-shadow: 0 0 15px #00f6ff;
+}
+
 .icon {
-  width: 50px;
+  width: 60px;
   margin: 0.5rem;
 }
 .multi-icons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
 }
 
+/* Buttons */
 button {
   margin-top: 1rem;
-  padding: 0.7rem 1.5rem;
+  padding: 0.9rem 1.7rem;
   border: none;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
   color: white;
   cursor: pointer;
   transition: all 0.3s;
+  box-shadow: 0 0 8px #00f6ff55; /* sáng nhẹ */
 }
 button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px #00f6ff;
+  box-shadow: 0 0 20px #00f6ff;
 }
 button:active {
   transform: scale(0.95);
