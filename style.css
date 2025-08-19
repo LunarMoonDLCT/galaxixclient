@@ -8,7 +8,6 @@ body {
   background: black;
 }
 
-/* Background */
 #starfield {
   position: fixed;
   top: 0; left: 0;
@@ -20,12 +19,11 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 80, 0.2);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 50, 80, 0.15); 
+  backdrop-filter: blur(1.5px);
   z-index: -1;
 }
 
-/* Header */
 header {
   text-align: center;
   padding: 2rem;
@@ -35,11 +33,10 @@ header {
   animation: glowAnim 2s infinite alternate;
 }
 @keyframes glowAnim {
-  from { text-shadow: 0 0 5px #0ff, 0 0 15px #0ff; }
-  to { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+  from { text-shadow: 0 0 6px #0ff, 0 0 16px #0ff; }
+  to { text-shadow: 0 0 20px #0ff, 0 0 42px #0ff; }
 }
 
-/* Title */
 .download-title {
   text-align: center;
   margin: 1rem 0;
@@ -47,10 +44,9 @@ header {
   text-shadow: 0 0 10px #0ff;
 }
 
-/* Fade In */
 .fade-in {
   opacity: 0;
-  transform: translateY(40px) scale(1);
+  transform: translateY(80px) scale(1);
   animation: fadeInUp 1s ease forwards;
 }
 @keyframes fadeInUp {
@@ -59,32 +55,31 @@ header {
     transform: translateY(0) scale(1);
   }
 }
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.6s; }
-.delay-3 { animation-delay: 1s; }
-.delay-4 { animation-delay: 1.4s; }
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.7s; }
+.delay-3 { animation-delay: 1.1s; }
+.delay-4 { animation-delay: 1.5s; }
 
-/* Cards */
 .cards {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
   padding: 2rem;
 }
 .card {
-  width: 340px;
-  background: rgba(255, 255, 255, 0.07);
+  width: 360px;
+  background: rgba(255, 255, 255, 0.06); 
   border-radius: 18px;
   padding: 2.5rem;
   text-align: center;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
   transform: scale(1);
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 .card:hover {
-  transform: translateY(0) scale(1.12);
+  transform: translateY(-8px) scale(1.12);
   box-shadow: 0 0 35px #00f6ff;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
 }
 .card h3 {
   margin-top: 0.5rem;
@@ -104,13 +99,12 @@ header {
   gap: 0.5rem;
 }
 
-/* Buttons */
 button {
   margin-top: 1rem;
   padding: 0.9rem 1.8rem;
   border: none;
   border-radius: 12px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.1);
   color: white;
   cursor: pointer;
   transform: scale(1);
@@ -118,9 +112,9 @@ button {
   box-shadow: 0 0 10px #00f6ff55;
 }
 button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 22px #00f6ff;
-  background: rgba(255,255,255,0.18);
+  transform: scale(1.06);
+  box-shadow: 0 0 20px #00f6ff;
+  background: rgba(255,255,255,0.15);
 }
 button:active {
   transform: scale(0.95);
