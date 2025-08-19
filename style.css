@@ -1,14 +1,12 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
   font-family: Arial, sans-serif;
-  background: black;
-  color: white;
+  color: #fff;
   overflow: hidden;
+  height: 100vh;
+  background: black;
 }
 
 #starfield {
@@ -17,115 +15,93 @@ body {
   width: 100%; height: 100%;
   z-index: -2;
 }
+
 .overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 100, 0.15);
+  background: rgba(0, 50, 80, 0.18); 
+  backdrop-filter: blur(2px);
   z-index: -1;
 }
 
 header {
   text-align: center;
-  padding: 2rem 0;
+  padding: 2rem;
 }
-h1.glow {
-  font-size: 4rem;
-  color: #fff;
-  text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff;
-  animation: flicker 2s infinite;
+.glow {
+  font-size: 3.5rem;
+  animation: glowAnim 2s infinite alternate;
 }
-
+@keyframes glowAnim {
+  from { text-shadow: 0 0 5px #0ff, 0 0 15px #0ff; }
+  to { text-shadow: 0 0 25px #0ff, 0 0 45px #0ff; }
+}
 .download-title {
   text-align: center;
+  margin: 1rem 0;
   font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #aefeff;
-  text-shadow: 0 0 10px #00f6ff;
+  text-shadow: 0 0 10px #0ff;
 }
 
 .cards {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
-  flex-wrap: wrap;
   padding: 2rem;
+  flex-wrap: wrap;
 }
-
 .card {
-  width: 340px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06); 
+  border-radius: 18px;
   padding: 2rem;
   text-align: center;
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 10px #00f6ff44;
-  transform: scale(1);
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 .card:hover {
   transform: scale(1.12);
-  box-shadow: 0 0 28px #00f6ff;
-  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 30px #00f6ff;
+  background: rgba(255, 255, 255, 0.1); 
 }
 .card h3, 
 .card p {
   margin-top: 1rem;
-  font-size: 1.2rem;
-  color: #e0f8ff;
+  font-size: 1.1rem;
+  color: #cdefff;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 .card:hover h3,
 .card:hover p {
   color: #ffffff;
-  text-shadow: 0 0 12px #00f6ff;
-}
-
-button {
-  margin-top: 1rem;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.12);
-  color: white;
-  cursor: pointer;
-  transform: scale(1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 0 8px #00f6ff44;
-}
-button:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 20px #00f6ff;
-}
-button:active {
-  transform: scale(0.9);
-  box-shadow: 0 0 28px #0ff;
+  text-shadow: 0 0 10px #00f6ff;
 }
 
 .icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  margin: 0.5rem;
 }
 .multi-icons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
-.fade-seq {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInSeq 1s ease forwards;
-  animation-delay: var(--delay, 0s);
+button {
+  margin-top: 1rem;
+  padding: 0.9rem 1.8rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-@keyframes fadeInSeq {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+button:hover {
+  transform: scale(1.08);  
+  box-shadow: 0 0 18px #00f6ff;
 }
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+button:active {
+  transform: scale(0.93);
+  box-shadow: 0 0 28px #0ff;
 }
