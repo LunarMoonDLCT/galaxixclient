@@ -45,7 +45,7 @@ document.addEventListener("mousemove", e => {
 
 async function downloadFile(type) {
   try {
-    const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxyClientInstaller/releases/latest");
+    const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxiXClientInstaller/releases/latest");
     const release = await response.json();
     let asset = type === "exe" ? release.assets.find(a => a.name.endsWith(".exe")) : release.assets.find(a => a.name.endsWith(".jar"));
     if (asset) {
