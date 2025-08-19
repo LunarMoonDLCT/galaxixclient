@@ -3,36 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GalaxyClient</title>
+  <title>GalaxyClient Download</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="starfield"></canvas>
   <div class="overlay"></div>
 
-  <header class="fade-seq" style="--delay:0s">
+  <header class="fade-in delay-1">
     <h1 class="glow">GalaxyClient</h1>
   </header>
 
-  <main>
-    <h2 class="download-title fade-seq" style="--delay:0.5s">Download</h2>
-    <div class="cards">
-      <div class="card fade-seq" style="--delay:1s">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="icon">
-        <h3>Download for Windows</h3>
-        <button onclick="downloadFile('exe')">Download .exe</button>
-      </div>
+  <h2 class="download-title fade-in delay-2">Download</h2>
 
-      <div class="card fade-seq" style="--delay:1.5s">
-        <div class="multi-icons">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="icon">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="MacOS" class="icon">
-        </div>
-        <h3>Download for Any OS</h3>
-        <button onclick="downloadFile('jar')">Download .jar</button>
-      </div>
+  <div class="cards">
+    <div class="card fade-in delay-3">
+      <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">
+      <h3>Download for Windows</h3>
+      <button onclick="downloadFile('exe')">Download .exe</button>
     </div>
-  </main>
+
+    <div class="card fade-in delay-4">
+      <div class="multi-icons">
+        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="macOS">
+      </div>
+      <h3>Download for Any OS</h3>
+      <button onclick="downloadFile('jar')">Download .jar</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
