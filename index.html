@@ -10,19 +10,20 @@
   <canvas id="starfield"></canvas>
   <div class="overlay"></div>
 
-  <header class="fade-in-down">
+  <header class="fade-seq" style="--delay:0s">
     <h1 class="glow">GalaxyClient</h1>
   </header>
 
-  <main class="fade-in-up">
-    <h2 class="download-title">Download</h2>
+  <main>
+    <h2 class="download-title fade-seq" style="--delay:0.5s">Download</h2>
     <div class="cards">
-      <div class="card">
+      <div class="card fade-seq" style="--delay:1s">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="icon">
         <h3>Download for Windows</h3>
         <button onclick="downloadFile('exe')">Download .exe</button>
       </div>
-      <div class="card">
+
+      <div class="card fade-seq" style="--delay:1.5s">
         <div class="multi-icons">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="icon">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="MacOS" class="icon">
