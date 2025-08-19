@@ -1,4 +1,3 @@
-// ---- Background Stars ----
 const canvas = document.getElementById("starfield");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -38,22 +37,35 @@ function animate() {
 }
 animate();
 
-// ---- Parallax effect ----
 document.addEventListener("mousemove", e => {
   const x = (e.clientX / window.innerWidth - 0.5) * 10;
   const y = (e.clientY / window.innerHeight - 0.5) * 10;
   canvas.style.transform = `translate(${x}px, ${y}px)`;
 });
 
-// ---- Download Function ----
-function downloadFile(type) {
-  const exe = "https://github.com/LunarMoonDLCT/GalaxyClientInstaller/releases/latest/download/GalaxyClientInstaller.exe";
-  const jar = "https://github.com/LunarMoonDLCT/GalaxyClientInstaller/releases/latest/download/GalaxyClientInstaller.jar";
-  
-  const link = document.createElement("a");
-  link.href = type === "exe" ? exe : jar;
-  link.download = "";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+async function downloadFile(type) {
+  try {
+    const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxyClientInstaller/releases/latest");
+    const release = await response.json();
+    let asset;
+    if (type === "exe") {
+      asset = release.assets.find(a => a.name.endsWith(".exe"));
+    } else {
+      asset = release.assets.find(a => a.name.endsWith(".jar"));
+    }
+
+    if (asset) {
+      const link = document.createElement("a");
+      link.href = asset.browser_download_url;
+      link.setAttribute("download", asset.name);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert("Không tìm thấy file download cho loại: " + type);
+    }
+  } catch (err) {
+    console.error("Download error:", err);
+    alert("Không thể tải release mới nhất!");
+  }
 }
