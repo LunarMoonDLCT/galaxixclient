@@ -8,7 +8,6 @@ body {
   background: black;
 }
 
-/* Background */
 #starfield {
   position: fixed;
   top: 0; left: 0;
@@ -20,12 +19,11 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 50, 80, 0.15); /* trong suốt hơn */
+  background: rgba(0, 50, 80, 0.15); 
   backdrop-filter: blur(1.5px);
   z-index: -1;
 }
 
-/* Header */
 header {
   text-align: center;
   padding: 2rem;
@@ -39,7 +37,6 @@ header {
   to { text-shadow: 0 0 25px #0ff, 0 0 45px #0ff; }
 }
 
-/* Fade effects */
 .fade-in-up {
   animation: fadeUp 1.5s ease forwards;
 }
@@ -55,7 +52,6 @@ header {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Title */
 .download-title {
   text-align: center;
   margin: 1rem 0;
@@ -63,7 +59,6 @@ header {
   text-shadow: 0 0 10px #0ff;
 }
 
-/* Cards */
 .cards {
   display: flex;
   justify-content: center;
@@ -71,13 +66,13 @@ header {
   padding: 2rem;
 }
 .card {
-  width: 280px; /* khung to hơn */
+  width: 280px;
   background: rgba(255, 255, 255, 0.07);
   border-radius: 20px;
   padding: 2.5rem;
   text-align: center;
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 10px #00f6ff; /* sáng nhẹ mặc định */
+  box-shadow: 0 0 10px #00f6ff;
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 .card:hover {
@@ -99,7 +94,6 @@ header {
   gap: 0.7rem;
 }
 
-/* Buttons */
 button {
   margin-top: 1rem;
   padding: 0.9rem 1.7rem;
@@ -109,7 +103,7 @@ button {
   color: white;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 0 8px #00f6ff55; /* sáng nhẹ */
+  box-shadow: 0 0 8px #00f6ff55; 
 }
 button:hover {
   transform: scale(1.1);
