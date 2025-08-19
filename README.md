@@ -1,1 +1,1 @@
-# galaxyclient
+# galaxiXclient
