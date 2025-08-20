@@ -1,4 +1,5 @@
-const canvas = document.getElementById("starfield");
+// --- Nền sao rơi ---
+const canvas = document.getElementById("nen-sao");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -26,7 +27,10 @@ function drawStars() {
 function updateStars() {
   stars.forEach(star => {
     star.y += star.dy;
-    if (star.y > canvas.height) star.y = 0;
+    if (star.y > canvas.height) {
+      star.y = 0;
+      star.x = Math.random() * canvas.width;
+    }
   });
 }
 
@@ -37,17 +41,32 @@ function animate() {
 }
 animate();
 
+// --- Parallax effect ---
+let offsetX = 0, offsetY = 0;
+
+// PC: di chuyển theo chuột
 document.addEventListener("mousemove", e => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 25;
-  const y = (e.clientY / window.innerHeight - 0.5) * 25;
-  canvas.style.transform = `translate(${x}px, ${y}px)`;
+  offsetX = (e.clientX / window.innerWidth - 0.5) * 25;
+  offsetY = (e.clientY / window.innerHeight - 0.5) * 25;
+  canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 });
 
-async function downloadFile(type) {
+
+document.addEventListener("touchmove", e => {
+  const touch = e.touches[0];
+  offsetX = (touch.clientX / window.innerWidth - 0.5) * 25;
+  offsetY = (touch.clientY / window.innerHeight - 0.5) * 25;
+  canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}, { passive: true });
+
+
+async function taiFile(type) {
   try {
     const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxiXClientInstaller/releases/latest");
     const release = await response.json();
-    let asset = type === "exe" ? release.assets.find(a => a.name.endsWith(".exe")) : release.assets.find(a => a.name.endsWith(".jar"));
+    let asset = type === "exe"
+      ? release.assets.find(a => a.name.endsWith(".exe"))
+      : release.assets.find(a => a.name.endsWith(".jar"));
     if (asset) {
       const link = document.createElement("a");
       link.href = asset.browser_download_url;
@@ -63,3 +82,49 @@ async function downloadFile(type) {
     alert("Không thể tải release mới nhất!");
   }
 }
+
+
+
+const modal = document.getElementById("downloadModal");
+const openBtn = document.getElementById("openModal");
+const closeBtn = document.querySelector(".close-btn");
+const tabBtns = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+// Mở modal
+openBtn.onclick = () => modal.classList.add("show");
+
+// Đóng modal
+closeBtn.onclick = () => modal.classList.remove("show");
+modal.onclick = (e) => {
+  if (e.target === modal) modal.classList.remove("show");
+};
+
+// Tabs
+tabBtns.forEach(btn => {
+  btn.onclick = () => {
+    tabBtns.forEach(b => b.classList.remove("active"));
+    tabContents.forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  };
+});
+
+// Detect OS
+let userOS = "others";
+if (navigator.userAgent.includes("Win")) {
+  userOS = "windows";
+}
+document.querySelector(`[data-tab="${userOS}"]`).click();
+
+// Detect mobile để tối ưu
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+if (isMobile()) {
+  document.body.style.fontSize = "14px";
+  document.querySelector(".modal-box").style.width = "95%";
+}
+
+document.querySelector(".mo-ta").classList.add("hieu-ung-mo", "delay-2");
+document.querySelector(".glow").classList.add("hieu-ung-mo", "delay-1");
