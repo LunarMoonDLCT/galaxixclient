@@ -6,7 +6,7 @@ body {
   color: white;
   text-align: center;
   font-family: Arial, sans-serif;
-  padding-top: 220px;
+  padding-top: 200px;
 }
 
 #nen-sao {
@@ -408,3 +408,98 @@ button:active {
     font-size: 0.95rem;
   }
 }
+
+
+
+
+
+
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 999;
+  margin-left: auto;  
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;  
+  background: rgba(20,20,20,0.95);
+  border-radius: 10px;
+  padding: 10px 20px;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideDown 0.3s ease;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translateY(-8px);
+}
+
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+.dropdown-menu a:hover {
+  background: rgba(0,246,255,0.2);
+  border-radius: 6px;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .menu { display: none; } 
+  .hamburger { display: flex; }
+}
+
+@media (max-width: 600px) {
+  .logo-text { display: none; }
+}
+
+
+
+
+/* anti copy */
+
+  body {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Chặn drag ảnh */
+  img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }

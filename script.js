@@ -10,20 +10,28 @@ for (let i = 0; i < 400; i++) {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     radius: Math.random() * 1.8,
-    dy: Math.random() * 0.5 + 0.1
+    dy: Math.random() * 0.5 + 0.1,
+    depth: Math.random() * 1.5 + 0.5
   });
 }
 
+let offsetX = 0, offsetY = 0;
+
+// --- Vẽ sao ---
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white";
+
   stars.forEach(star => {
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    let parallaxX = star.x + offsetX * star.depth;
+    let parallaxY = star.y + offsetY * star.depth;
+    ctx.arc(parallaxX, parallaxY, star.radius, 0, Math.PI * 2);
     ctx.fill();
   });
 }
 
+// --- Update sao ---
 function updateStars() {
   stars.forEach(star => {
     star.y += star.dy;
@@ -41,25 +49,46 @@ function animate() {
 }
 animate();
 
-// --- Parallax effect ---
-let offsetX = 0, offsetY = 0;
+// --- Detect device ---
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
 
-// PC: di chuyển theo chuột
-document.addEventListener("mousemove", e => {
-  offsetX = (e.clientX / window.innerWidth - 0.5) * 25;
-  offsetY = (e.clientY / window.innerHeight - 0.5) * 25;
-  canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+// PC: parallax theo chuột
+if (!isMobile()) {
+  document.addEventListener("mousemove", e => {
+    offsetX = (e.clientX / window.innerWidth - 0.5) * 50;
+    offsetY = (e.clientY / window.innerHeight - 0.5) * 50;
+  });
+} else {
+  // Mobile: "kéo nền" theo quét tay
+  let lastTouchX = null, lastTouchY = null;
+
+  document.addEventListener("touchmove", e => {
+    const touch = e.touches[0];
+    if (lastTouchX !== null && lastTouchY !== null) {
+      let dx = touch.clientX - lastTouchX;
+      let dy = touch.clientY - lastTouchY;
+      offsetX += dx * 0.5; // giảm để di chuyển mượt
+      offsetY += dy * 0.5;
+    }
+    lastTouchX = touch.clientX;
+    lastTouchY = touch.clientY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", () => {
+    lastTouchX = null;
+    lastTouchY = null;
+  });
+}
+
+// --- Resize canvas ---
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
 
-
-document.addEventListener("touchmove", e => {
-  const touch = e.touches[0];
-  offsetX = (touch.clientX / window.innerWidth - 0.5) * 25;
-  offsetY = (touch.clientY / window.innerHeight - 0.5) * 25;
-  canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-}, { passive: true });
-
-
+// --- Download GitHub release ---
 async function taiFile(type) {
   try {
     const response = await fetch("https://api.github.com/repos/LunarMoonDLCT/GalaxiXClientInstaller/releases/latest");
@@ -83,18 +112,14 @@ async function taiFile(type) {
   }
 }
 
-
-
+// --- Modal ---
 const modal = document.getElementById("downloadModal");
 const openBtn = document.getElementById("openModal");
 const closeBtn = document.querySelector(".close-btn");
 const tabBtns = document.querySelectorAll(".tab-btn");
 const tabContents = document.querySelectorAll(".tab-content");
 
-// Mở modal
 openBtn.onclick = () => modal.classList.add("show");
-
-// Đóng modal
 closeBtn.onclick = () => modal.classList.remove("show");
 modal.onclick = (e) => {
   if (e.target === modal) modal.classList.remove("show");
@@ -117,10 +142,7 @@ if (navigator.userAgent.includes("Win")) {
 }
 document.querySelector(`[data-tab="${userOS}"]`).click();
 
-// Detect mobile để tối ưu
-function isMobile() {
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
+// Mobile style
 if (isMobile()) {
   document.body.style.fontSize = "14px";
   document.querySelector(".modal-box").style.width = "95%";
@@ -128,3 +150,33 @@ if (isMobile()) {
 
 document.querySelector(".mo-ta").classList.add("hieu-ung-mo", "delay-2");
 document.querySelector(".glow").classList.add("hieu-ung-mo", "delay-1");
+
+// --- Dropdown menu ---
+const hamburger = document.getElementById("hamburger");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  dropdownMenu.style.display =
+    dropdownMenu.style.display === "flex" ? "none" : "flex";
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1024) {
+    dropdownMenu.style.display = "none";
+    hamburger.classList.remove("active");
+  }
+});
+
+// --- Dev tool block ---
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+    (e.ctrlKey && e.key === "U")
+  ) {
+    e.preventDefault();
+  }
+});
